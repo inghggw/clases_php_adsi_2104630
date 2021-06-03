@@ -1,21 +1,15 @@
 <?php
+require_once('../base/functions.php');
+
 $salario = $_GET['salario'] ?? '';
 $cedula = $_GET['cedula'] ?? '';
 $salud = $pension = $arl = $fps = 0;
-$porcentajeSalud = 0.04;
-$porcentajePension = 0.04;
-$porcentajeArl = 0.005;
-$porcentajeFps = 0.01;
-$smlv = 1014980;
 
 if ($salario) {
-  $salud = $salario * $porcentajeSalud;
-  $pension = $salario * $porcentajePension;
-  $arl = $salario * $porcentajeArl;
-
-  if ($salario > ($smlv * 4)) {
-    $fps = $salario * $porcentajeFps;
-  }
+  $salud = deducible($salario, 'salud');
+  $pension = deducible($salario, 'pension');
+  $arl = deducible($salario, 'arl');
+  $fps = deducible($salario, 'fps');
 }
 
 ?>
@@ -31,10 +25,10 @@ if ($salario) {
 <body>
   <form action="">
     <label>Salario</label>
-    <input type="number" name="salario">
+    <input type="number" name="salario" required>
     <br>
     <label>Cédula</label>
-    <input type="number" name="cedula">
+    <input type="number" name="cedula" required>
     <br>
     <input type="submit" value="Enviar">
   </form>
