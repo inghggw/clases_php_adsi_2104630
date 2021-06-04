@@ -4,12 +4,17 @@ require_once('../base/functions.php');
 $salario = $_GET['salario'] ?? '';
 $cedula = $_GET['cedula'] ?? '';
 $salud = $pension = $arl = $fps = 0;
+$errorSalario = '';
 
-if ($salario) {
+if ($salario && $cedula) {
   $salud = deducible($salario, 'salud');
   $pension = deducible($salario, 'pension');
   $arl = deducible($salario, 'arl');
   $fps = deducible($salario, 'fps');
+}
+
+if (isset($_GET['salario']) && !$_GET['salario']) {
+  $errorSalario = 'Debe ingresar un salario';
 }
 
 ?>
@@ -25,10 +30,16 @@ if ($salario) {
 <body>
   <form action="">
     <label>Salario</label>
-    <input type="number" name="salario" required>
+    <input type="number" name="salario">
+    <label style="color:red"><?php echo $errorSalario ?></label>
     <br>
     <label>Cédula</label>
-    <input type="number" name="cedula" required>
+    <input type="number" name="cedula">
+    <?php
+      if (isset($_GET['cedula']) && !$_GET['cedula']) {
+        echo '<label style="color:red">Debe ingresar un cédula</label>';
+      }
+    ?>
     <br>
     <input type="submit" value="Enviar">
   </form>
