@@ -2,6 +2,7 @@
 require_once('../base/functions.php');
 
 $salario = $_GET['salario'] ?? '';
+$salario = intval($salario);
 $cedula = $_GET['cedula'] ?? '';
 $salud = $pension = $arl = $fps = 0;
 $errorSalario = '';
@@ -17,6 +18,9 @@ if (isset($_GET['salario']) && !$_GET['salario']) {
   $errorSalario = 'Debe ingresar un salario';
 }
 
+if (isset($_GET['salario']) && $_GET['salario'] && !$salario) {
+  $errorSalario = 'Debe ingresar un número mayor a 0';
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +48,9 @@ if (isset($_GET['salario']) && !$_GET['salario']) {
     <input type="submit" value="Enviar">
   </form>
 
+  <?php
+  if ($salario && $cedula) {
+  ?>
   <table border="1">
   <tr>
     <th>Cédula</th>
@@ -61,6 +68,9 @@ if (isset($_GET['salario']) && !$_GET['salario']) {
     <td><?php echo $arl; ?></td>
     <td><?php echo $fps; ?></td>
   </tr>
+  <?php
+  }
+  ?>
 
   </table>
 </body>
