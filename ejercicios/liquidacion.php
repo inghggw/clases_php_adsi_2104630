@@ -1,26 +1,7 @@
 <?php
-require_once('../base/functions.php');
-
 $salario = $_GET['salario'] ?? '';
-$salario = intval($salario);
-$cedula = $_GET['cedula'] ?? '';
-$salud = $pension = $arl = $fps = 0;
-$errorSalario = '';
-
-if ($salario && $cedula) {
-  $salud = deducible($salario, 'salud');
-  $pension = deducible($salario, 'pension');
-  $arl = deducible($salario, 'arl');
-  $fps = deducible($salario, 'fps');
-}
-
-if (isset($_GET['salario']) && !$_GET['salario']) {
-  $errorSalario = 'Debe ingresar un salario';
-}
-
-if (isset($_GET['salario']) && $_GET['salario'] && !$salario) {
-  $errorSalario = 'Debe ingresar un número mayor a 0';
-}
+$errorSalario = $_GET['errorSalario'] ?? '';
+$salud = $_GET['salud'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +13,7 @@ if (isset($_GET['salario']) && $_GET['salario'] && !$salario) {
   <title>Liquidación</title>
 </head>
 <body>
-  <form action="">
+  <form action="liquidacionActions.php" method="POST">
     <label>Salario</label>
     <input type="number" name="salario">
     <label style="color:red"><?php echo $errorSalario ?></label>
