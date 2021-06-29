@@ -1,6 +1,9 @@
 <?php
 session_start();
-var_dump($_SESSION);
+
+if ($_SESSION) {
+  header("Location: http://localhost:8888/clases_php_adsi_2104630/ejercicios/inicio.php");
+}
 
 $msg = $_REQUEST['msg'] ?? '';
 ?>
