@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+if (!$_SESSION) {
+  header("Location: http://localhost:8888/clases_php_adsi_2104630/ejercicios/login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,5 +20,8 @@ session_start();
   </h1>
 
   <!-- BOTON DENTRO DE UN FORM PARA CERRAR SESION https://www.w3schools.com/php/php_sessions.asp-->
+  <form action="logout.php" method="post">
+    <button type="submit">Cerrar sesión</button>
+  </form>
 </body>
 </html>
