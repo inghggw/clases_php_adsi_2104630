@@ -1,7 +1,9 @@
 <?php
+require_once('Connect.php');
 
 class User {
 
+  protected $connect;
   private $id;
   public $name;
   public $lastname;
@@ -11,6 +13,8 @@ class User {
   public function __construct(int $id)
   {
     $this->id = $id;
+    $newConnect = new Connect;
+    $this->connect = $newConnect->init();
   }
 
   public function setName(string $name) {
@@ -24,6 +28,13 @@ class User {
   public function getFullName()
   {
     return $this->name . ' ' . $this->lastname;
+  }
+
+  public function getByEmail(string $email)
+  {
+    $sql = "SELECT * FROM user WHERE email='$email'";
+
+    return $this->connect->query($sql);
   }
 
   public function __destruct()
