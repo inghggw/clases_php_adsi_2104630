@@ -1,6 +1,7 @@
 Curso de PHP SENA ADSI 2104630
 
-![screen-capture-_15_](https://user-images.githubusercontent.com/5940404/128791613-9cd6bdd9-0c54-4413-8098-3f0c7db67f7a.gif)
+Flujo ejercicio CRUD final
 
+![Captura de Pantalla 2021-08-12 a la(s) 7 39 03 p  m](https://user-images.githubusercontent.com/5940404/129288680-96d81ccf-01bf-471e-a655-85dd771cff72.png)
 
 Ing. Pedag. Mg. Henry Giovanny Gonzalez Waltero
