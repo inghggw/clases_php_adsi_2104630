@@ -110,8 +110,12 @@ if ($_SESSION) {
           }
         }).then(res => {
           res.json().then(response => {
-            const msg = response.msg;
-            document.getElementById('message').innerHTML = msg;
+
+            if (response.redirect) {
+              document.location = response.redirect;
+            } else {
+              document.getElementById('message').innerHTML = response.msg;
+            }
             console.log(response)
           })
         })
